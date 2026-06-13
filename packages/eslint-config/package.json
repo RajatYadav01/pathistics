@@ -1,0 +1,12 @@
+{
+	"name": "@pathistics/eslint-config",
+	"version": "0.0.0",
+	"private": true,
+	"license": "BSD-3-Clause",
+	"type": "module",
+	"main": "index.js",
+	"exports": {
+		".": "./index.js",
+		"./react": "./react.js"
+	}
+}

@@ -1,0 +1,68 @@
+services:
+  pathistics-database:
+    container_name: pathistics-database
+    image: postgres:18
+    environment:
+      - POSTGRES_DB=pathistics
+      - POSTGRES_USER=pathistics
+      - POSTGRES_PASSWORD=161208
+    volumes:
+      - pathistics_db_data:/var/lib/postgresql
+    ports:
+      - "5440:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "pathistics"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    networks:
+      - pathistics
+
+  pathistics-backend:
+    container_name: pathistics-backend
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      pathistics-database:
+        condition: service_healthy
+    environment:
+      - DEBUG=False
+      - SECRET_KEY=pathistics-secret-key-161208919209319
+      - ALLOWED_HOSTS=localhost,127.0.0.1,0.0.0.0
+      - CORS_ALLOWED_ORIGINS=http://localhost:5173,http://127.0.0.1:5173,http://0.0.0.0:5173
+      - DATABASE_URL=postgresql://pathistics:161208@pathistics-database:5432/pathistics
+      - OSRM_API_URL=http://router.project-osrm.org
+    volumes:
+      - ./apps/api:/app
+    networks:
+      - pathistics
+
+  pathistics-frontend:
+    container_name: pathistics-frontend
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+      args:
+        - VITE_BASE_URL=/
+        - VITE_BACKEND_API_URL=http://localhost:5010/api/v1
+        - VITE_MAP_TILE_URL=https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png
+    ports:
+      - "5173:80"
+    depends_on:
+      - pathistics-backend
+    volumes:
+      - ./apps/web:/app
+      - /app/node_modules
+    networks:
+      - pathistics
+
+volumes:
+  pathistics_db_data:
+
+networks:
+  pathistics:
+    driver: bridge

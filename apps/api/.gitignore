@@ -1,0 +1,11 @@
+# Python virtual environment
+.venv/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django local settings or sqlite DB if using it locally
+db.sqlite3
+.env

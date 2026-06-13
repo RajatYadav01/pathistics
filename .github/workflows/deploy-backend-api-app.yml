@@ -1,0 +1,21 @@
+name: Deploy Backend
+
+on:
+  workflow_run:
+    workflows: ["All Checks"]
+    types:
+      - completed
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    if: >-
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main') ||
+      (github.event_name == 'workflow_dispatch')
+    steps:
+      - name: Trigger Render Deployment via Deploy Hook
+        # Send an empty POST request to Render's internal secure URL string
+        run: |
+          curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"

@@ -1,0 +1,8 @@
+{
+	"extends": "@pathistics/tsconfig/base.json",
+	"compilerOptions": {
+		"types": ["node", "@playwright/test"]
+	},
+	"include": ["src/**/*"],
+	"exclude": ["node_modules"]
+}

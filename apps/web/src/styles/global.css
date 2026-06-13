@@ -1,0 +1,77 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+	font-family:
+		"Inter",
+		-apple-system,
+		BlinkMacSystemFont,
+		"Segoe UI",
+		"Oxygen",
+		"Ubuntu",
+		"Cantarell",
+		"Fira Sans",
+		"Droid Sans",
+		"Helvetica Neue",
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+    width: 100%;
+    max-width: 120rem;
+    height: 100%;
+}
+
+#root {
+	width: 100%;
+	height: 100%;
+}
+
+/* Leaflet map container fix */
+.leaflet-container {
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #888;
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}
+
+/* Print styles for ELD logs */
+@media print {
+	.MuiAppBar-root,
+	.MuiDrawer-root,
+	button {
+		display: none !important;
+	}
+
+	.MuiPaper-root {
+		box-shadow: none !important;
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+}
