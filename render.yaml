@@ -1,13 +1,9 @@
 services:
   - type: web
     name: pathistics-api
-    runtime: python
-    buildCommand: |
-      pip install uv
-      uv pip install -r requirements.txt --system
-      python manage.py collectstatic --no-input
-      python manage.py migrate
-    startCommand: "gunicorn myproject.wsgi:application"
+    runtime: docker
+    dockerContext: .
+    dockerfilePath: apps/api/Dockerfile
     envVars:
       # Non-sensitive variables can be hardcoded directly
       - key: DEBUG
