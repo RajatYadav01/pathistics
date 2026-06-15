@@ -46,15 +46,20 @@ jobs:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
-      # Build the frontend using your local turbo setup via Vercel CLI integration
-      - name: Build Project Artifacts
+      # Build the frontend using Turborepo
+      - name: Build Project Artifacts via Turborepo
+        run: pnpm turbo run build --filter=@pathistics/web
+        env:
+          VITE_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
+          VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
+          VITE_MAP_TILE_URL: ${{ vars.VITE_MAP_TILE_URL }}
+
+      # Inform Vercel CLI to link the local compiled outputs inside the .vercel folder
+      - name: Link Local Build to Vercel
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-          VITE_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
-          VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
-          VITE_MAP_TILE_URL: ${{ vars.VITE_MAP_TILE_URL }}
 
       # Deploys the compiled pre-built outputs directly from the workspace
       - name: Deploy Artifacts to Vercel
