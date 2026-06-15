@@ -73,7 +73,7 @@ SPECTACULAR_SETTINGS = {
 }
 
 # Free Map API (OpenStreetMap with GraphHopper or OSRM)
-OSRM_API_URL = os.getenv("OSRM_API_URL", "http://router.project-osrm.org")
+OSRM_API_URL = os.getenv("OSRM_API_URL", "https://router.project-osrm.org")
 
 ROOT_URLCONF = "config.urls"
 
@@ -98,7 +98,10 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-DATABASES = {"default": env.db("DATABASE_URL")}
+DATABASE_URL = env.str("DATABASE_URL", default="sqlite:///:memory:")
+DATABASES = {
+    "default": env.db_url_config(DATABASE_URL)
+}
 
 TEST_SUFFIX = os.environ.get("TEST_MODE")
 DATABASES["default"]["TEST"] = {"NAME": f"test_pathistics_{TEST_SUFFIX}"}
