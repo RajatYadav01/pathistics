@@ -7,6 +7,8 @@
 		"dev": "vite",
 		"build": "tsc -b && vite build",
 		"lint": "eslint .",
+		"lint:fix": "eslint . --fix",
+		"lint:report": "eslint . --format json --output-file lint-report.json || true",
 		"preview": "vite preview",
 		"test": "vitest",
 		"test:unit": "vitest run unit.test.ts --passWithNoTests",

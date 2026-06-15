@@ -11,6 +11,31 @@ jobs:
       # Checkout the code
       - uses: actions/checkout@v6
 
+      # Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13" # Match your project's Python version
+
+      # Set up uv and cache its managed dependencies
+      - name: Set up uv (Python Package Manager)
+        uses: astral-sh/setup-uv@v8
+        with:
+          enable-cache: true
+          cache-dependency-glob: "apps/api/pyproject.toml"
+
+      # Create the virtual environment and install dependencies using uv
+      - name: Install Python dependencies
+        run: |
+          # Create the virtual environment
+          uv venv apps/api/.venv
+
+          # Change directory to the backend app
+          cd apps/api
+
+          # Install the project and its dependencies into the local .venv
+          uv pip install -e .[dev] --python .venv
+
       # Set up pnpm (version comes from package.json's "packageManager")
       - uses: pnpm/action-setup@v6
 

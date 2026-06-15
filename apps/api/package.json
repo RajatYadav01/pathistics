@@ -6,7 +6,9 @@
 	"type": "module",
 	"scripts": {
 		"setup": "uv sync && uv run python manage.py migrate",
-		"lint": ".venv/bin/flake8 .",
+		"lint": ".venv/bin/ruff check .",
+		"lint:fix": ".venv/bin/ruff check . --fix",
+		"lint:report": ".venv/bin/ruff check . --format json --output-file lint-report.json || true",
 		"test": "cross-env PYTHONPATH=. uv run manage.py test apps.trips",
 		"test:unit": "cross-env PYTHONPATH=. TEST_MODE=unit uv run python manage.py test apps.trips.tests.test_unit",
 		"test:integration": "cross-env PYTHONPATH=. TEST_MODE=integration uv run python manage.py test apps.trips.tests.test_integration",

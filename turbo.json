@@ -5,6 +5,13 @@
 		"lint": {
 			"cache": true
 		},
+		"lint:fix": {
+			"cache": false
+		},
+		"lint:report": {
+			"cache": true,
+			"outputs": ["lint-report.json"]
+		},
 		"test:unit": {
 			"outputs": [],
 			"cache": true
