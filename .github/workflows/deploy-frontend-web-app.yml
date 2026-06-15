@@ -54,6 +54,13 @@ jobs:
           VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
           VITE_MAP_TILE_URL: ${{ vars.VITE_MAP_TILE_URL }}
 
+      # Let Vercel handle the build inside the correct workspace directory
+      - name: Link Local Build to Vercel
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }} --cwd apps/web
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
       # Deploys the compiled pre-built outputs directly from the workspace
       - name: Deploy Artifacts to Vercel
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }} --cwd apps/web
