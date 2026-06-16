@@ -9,7 +9,8 @@ jobs:
 
     steps:
       # Checkout the code
-      - uses: actions/checkout@v6
+      - name: Checkout Code
+        uses: actions/checkout@v6
 
       # Set up Python environment
       - name: Set up Python
@@ -25,7 +26,7 @@ jobs:
           cache-dependency-glob: "apps/api/pyproject.toml"
 
       # Create the virtual environment and install dependencies using uv
-      - name: Install Python dependencies
+      - name: Install Backend dependencies
         run: |
           # Create the virtual environment
           uv venv apps/api/.venv
@@ -34,13 +35,15 @@ jobs:
           cd apps/api
 
           # Install the project and its dependencies into the local .venv
-          uv pip install -e .[dev] --python .venv
+          uv sync --group dev
 
       # Set up pnpm (version comes from package.json's "packageManager")
-      - uses: pnpm/action-setup@v6
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
 
       # Set up Node with pnpm cache
-      - uses: actions/setup-node@v6
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
         with:
           node-version: "24"
           cache: "pnpm"

@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools>=82.0.0"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "pathistics_api"
 version = "0.1.0"
@@ -38,3 +42,7 @@ dev = [
     "pylint>=4.0.5",
     "ruff>=0.15.17",
 ]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["config*", "apps*"]
