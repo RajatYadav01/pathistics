@@ -1,4 +1,4 @@
-import base from "@pathistics/eslint-config/index.js";
-import react from "@pathistics/eslint-config/react.js";
+import base from "./packages/eslint-config/index.js";
+import react from "./packages/eslint-config/react.js";
 
 export default [...base, ...react];
