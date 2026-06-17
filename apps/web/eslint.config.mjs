@@ -1,7 +1,7 @@
 import globals from "globals";
 import reactRefresh from "eslint-plugin-react-refresh";
 import { defineConfig, globalIgnores } from "eslint/config";
-import base from "@pathistics/eslint-config/base";
+import base from "@pathistics/eslint-config";
 import react from "@pathistics/eslint-config/react";
 
 export default defineConfig([
