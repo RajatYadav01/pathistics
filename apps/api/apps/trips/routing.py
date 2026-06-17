@@ -2,7 +2,7 @@ import requests
 import logging
 from geopy.geocoders import Nominatim
 from geopy.extra.rate_limiter import RateLimiter
-from typing import Optional, Dict, Any, List, Tuple
+from typing import Optional, Dict, Any, Tuple
 
 logger = logging.getLogger(__name__)
 

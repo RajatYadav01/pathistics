@@ -7,7 +7,7 @@ import type { RouteInstruction } from "@/types/trip.types";
 import "leaflet/dist/leaflet.css";
 
 // Fix Leaflet icon issue
-delete (L.Icon.Default.prototype as any)._getIconUrl;
+delete (L.Icon.Default.prototype as unknown as Record<string, unknown>)._getIconUrl;
 L.Icon.Default.mergeOptions({
 	iconRetinaUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
 	iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
@@ -15,7 +15,13 @@ L.Icon.Default.mergeOptions({
 });
 
 interface RouteMapProps {
-	geometry: any;
+	geometry:
+		| {
+				type: string;
+				coordinates: [number, number][];
+		  }
+		| null
+		| undefined;
 	instructions: RouteInstruction[];
 	totalDistance: number;
 }

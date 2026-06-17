@@ -88,7 +88,7 @@ class ELDEngine:
                 1
                 for fs in fuel_stops
                 if fs["mile"] / 55.0
-                <= sum(l["driving_hours"] for l in logs) + drive_today
+                <= sum(log["driving_hours"] for log in logs) + drive_today
             )
 
             driving = drive_today

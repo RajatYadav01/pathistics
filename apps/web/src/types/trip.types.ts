@@ -35,7 +35,7 @@ export interface EldLogEntry {
 
 export interface TripPlan {
 	trip_id: number;
-	route: any;
+	route: Record<string, unknown>;
 	instructions: RouteInstruction[];
 	total_distance_miles: number;
 	estimated_hours: number;

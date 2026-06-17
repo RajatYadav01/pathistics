@@ -63,7 +63,7 @@ describe("useTripPlan", () => {
 					dropoff_location: "Chicago",
 					current_cycle_used: 0,
 				});
-			} catch (e) {
+			} catch {
 				// Expected error
 			}
 		});

@@ -3,7 +3,7 @@ from django.urls import reverse
 from rest_framework.test import APIClient
 from rest_framework.response import Response
 from rest_framework import status
-from unittest.mock import patch, Mock
+from unittest.mock import patch
 from datetime import datetime
 from typing import cast, Any
 from apps.trips.models import Trip, RouteSegment, EldLogEntry

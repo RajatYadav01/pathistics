@@ -56,9 +56,13 @@ export const History: React.FC = () => {
 			const history = await tripApi.getTripHistory();
 			setTrips(Array.isArray(history) ? history : []);
 			setError(null);
-		} catch (error: any) {
+		} catch (error: unknown) {
 			console.error("Failed to load trips:", error);
-			setError(error?.message || "Failed to load trip history. Please try again.");
+			const message =
+				error && typeof error === "object" && "message" in error && typeof (error as Record<string, unknown>).message === "string"
+					? String((error as Record<string, unknown>).message)
+					: "Failed to load trip history. Please try again.";
+			setError(message);
 		} finally {
 			setIsLoading(false);
 		}
@@ -171,7 +175,9 @@ export const History: React.FC = () => {
 						<TableBody>
 							{trips.length > 0 &&
 								trips.map((trip) => (
-									<TableRow key={trip.trip_id} sx={{ "&:hover": { backgroundColor: (theme) => (theme.palette.mode === "dark" ? "#111111" : "#f3f3f3") } }}>
+									<TableRow
+										key={trip.trip_id}
+										sx={{ "&:hover": { backgroundColor: (theme) => (theme.palette.mode === "dark" ? "#111111" : "#f3f3f3") } }}>
 										<TableCell>
 											<Typography variant="body2" sx={{ fontWeight: "medium" }}>
 												#{trip.trip_id}

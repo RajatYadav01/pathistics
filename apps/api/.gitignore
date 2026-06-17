@@ -5,6 +5,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+*.egg-info/
 
 # Django local settings or sqlite DB if using it locally
 db.sqlite3
