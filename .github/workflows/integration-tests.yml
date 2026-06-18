@@ -31,17 +31,19 @@ jobs:
         with:
           python-version: "3.13"
 
-      - name: Install uv (Python Package Manager)
+      - name: Set up uv (Python Package Manager)
         uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b
         with:
-          enable-cache: true # Caches Python dependencies automatically
+          enable-cache: true
+          cache-dependency-glob: "apps/api/pyproject.toml"
 
-      - name: Install Backend Dependencies
+      - name: Install Backend dependencies
         run: |
+          uv venv apps/api/.venv
           cd apps/api
-          uv pip install -r requirements.txt --system
+          uv sync --group dev
 
-      - name: Install pnpm
+      - name: Set up pnpm
         uses: pnpm/action-setup@v6
 
       - name: Set up Node.js
