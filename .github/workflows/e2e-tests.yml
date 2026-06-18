@@ -76,7 +76,7 @@ jobs:
       - name: Prepare local database for the tests
         env:
           DATABASE_URL: "postgres://postgres:password@localhost:5432/test_db"
-        run: pnpm --filter "@pathistics/api" run db:migrate -- --yes
+        run: pnpm --filter "@pathistics/api" run db:migrate
 
       - name: Run Playwright tests
         run: pnpm test:e2e
