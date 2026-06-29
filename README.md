@@ -41,7 +41,7 @@ Pathistics is a comprehensive trip planning and Electronic Logging Device (ELD) 
 
 ## Project Structure
 
-```shell
+```text
 pathistics/
 ├── .github/
 │   └── workflows/                     # GitHub Actions workflows
@@ -75,7 +75,7 @@ pathistics/
 │       ├── apps/                      # Core backend business logic split into Django apps
 │       │   └── trips/
 │       ├── pyproject.toml             # Python tooling and package configuration for uv package manager
-│       ├── requirements.txt           
+│       ├── requirements.txt
 │       ├── package.json               # Package file for Turborepo task orchestration
 │       └── Dockerfile
 ├── packages/
@@ -103,7 +103,7 @@ pathistics/
 
 ### Setup
 
-To modify and use this project locally on your system, follow these steps:  
+To modify and use this project locally on your system, follow these steps:
 
 1. Clone the project's repository.
 
