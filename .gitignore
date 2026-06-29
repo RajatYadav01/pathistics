@@ -65,6 +65,7 @@ turbo/
 .tmp/
 temp/
 tmp/
+.ruff_cache
 
 # VSCode extension cache
 .vscode/
