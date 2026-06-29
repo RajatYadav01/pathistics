@@ -1,5 +1,5 @@
 {
-	"name": "@pathistics/e2e",
+	"name": "@pathistics/e2e-tests",
 	"version": "0.0.0",
 	"private": true,
 	"license": "BSD-3-Clause",

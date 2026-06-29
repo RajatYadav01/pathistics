@@ -71,7 +71,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Install Playwright browsers
-        run: pnpm --filter "@pathistics/e2e" exec playwright install --with-deps
+        run: pnpm --filter "@pathistics/e2e-tests" exec playwright install --with-deps
 
       - name: Prepare local database for the tests
         env:
