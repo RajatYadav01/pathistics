@@ -64,7 +64,7 @@ pathistics/
 │   │   │   ├── utils/                 # Utility functions
 │   │   │   ├── config/                # App configuration
 │   │   │   ├── App.tsx
-│   │   │   ├── mani.tsx
+│   │   │   ├── main.tsx
 │   │   │   └── index.html
 │   │   ├── vite.config.ts
 │   │   ├── vitest.config.ts
